@@ -4,13 +4,13 @@
 define("DB_HOST", "localhost");
 
 //Nombre de la base de datos
-define("DB_NAME", "ago24pad_test");
+define("DB_NAME", "dbsistena");
 
 //Usuario de la base de datos
-define("DB_USERNAME","ago24pad_pcon");
+define("DB_USERNAME","root");
 
 //Contraseña del usuario de la ase de datos
-define("DB_PASSWORD","P7Sp24@ZE.");
+define("DB_PASSWORD","");
 
 //Definimos la codificación de los caracteres
 define("DB_ENCODE","utf8");

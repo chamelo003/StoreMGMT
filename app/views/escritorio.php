@@ -15,11 +15,11 @@ if ($_SESSION["escritorio"] == 1) {
     $consulta = new Consultas();
     $rsptac = $consulta->totalCompraHoy();
     $regc = $rsptac->fetch_object();
-    $totalc = 'S/. ' . $regc->total_compra;
+    $totalc = 'Lps. ' . $regc->total_compra;
 
     $rsptav = $consulta->totalVentaHoy();
     $regv = $rsptav->fetch_object();
-    $totalv = 'S/. ' . $regv->total_venta;
+    $totalv = 'Lps. ' . $regv->total_venta;
 
     //Datos para mostrar el graficos de barras de las compras
     $compras10 = $consulta->comprasUltimos_10Dias();
@@ -72,11 +72,11 @@ if ($_SESSION["escritorio"] == 1) {
                             <div class="small-box bg-aqua">
                                 <div class="inner">
                                     <h4 style="font-size: 17px;"><strong><?php echo $totalc; ?></strong></h4>
-                                    <p>Compras</p>
+                                    <p>Compras realizadas hoy</p>
                                 </div>
                                 <!--div class="icon"><i class="ion ion-bag"></i></div-->
                                 <a href="ingreso.php" class="small-box-footer">
-                                    Compras <i class="fa fa-arrow-circle-right"></i>
+                                    Ir a seccion de Compras <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
                         </div>
@@ -84,11 +84,11 @@ if ($_SESSION["escritorio"] == 1) {
                             <div class="small-box bg-green">
                                 <div class="inner">
                                     <h4 style="font-size: 17px;"><strong><?php echo $totalv; ?></strong></h4>
-                                    <p>Ventas</p>
+                                    <p>Ventas realizadas hoy</p>
                                 </div>
                                 <!--div class="icon"><i class="ion ion-bag"></i></div-->
                                 <a href="ventas.php" class="small-box-footer">
-                                    Ventas <i class="fa fa-arrow-circle-right"></i>
+                                    Ir a seccion de Ventas <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
                         </div>
@@ -139,7 +139,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: [<?php echo $fechasc; ?>],
         datasets: [{
-            label: '# Compras en S/ de los últimos 10 días',
+            label: '# Compras en Lps de los últimos 10 días',
             data: [<?php echo $totalesc; ?>],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -185,7 +185,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: [<?php echo $fechasv; ?>],
         datasets: [{
-            label: '# Ventas en S/ de los últimos 12 meses',
+            label: '# Ventas en Lps de los últimos 12 meses',
             data: [<?php echo $totalesv; ?>],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',

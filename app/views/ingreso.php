@@ -72,9 +72,8 @@ if ($_SESSION["compras"] == 1) {
                                 <label>Tipo Comprobante(*):</label>
                                 <select name="tipo_comprobanteMostrar" id="tipo_comprobanteMostrar" class="form-control selectpicker" disabled>
                                     <option value="">--Seleccione--</option>
-                                    <option value="Boleta">Boleta</option>
                                     <option value="Factura">Factura</option>
-                                    <option value="Ticket">Ticket</option>
+                                    <option value="Boleta">Boleta</option>
                                 </select>
                             </div>
                             <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
@@ -132,17 +131,16 @@ if ($_SESSION["compras"] == 1) {
                                 <label>Tipo Comprobante(*):</label>
                                 <select name="tipo_comprobante" id="tipo_comprobante" class="form-control selectpicker" required>
                                     <option value="">--Seleccione--</option>
-                                    <option value="Boleta">Boleta</option>
                                     <option value="Factura">Factura</option>
-                                    <option value="Ticket">Ticket</option>
+                                    <option value="Boleta">Boleta</option>
                                 </select>
                             </div>
                             <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                                <label>Serie(*):</label>
+                                <label>CAI factura(*):</label>
                                 <input type="text" class="form-control" name="serie_comprobante" id="serie_comprobante" autocomplete="off" required maxlength="7" placeholder="Serie">
                             </div>
                             <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                                <label>Número(*):</label>
+                                <label>Número factura(*):</label>
                                 <input type="text" class="form-control" name="num_comprobante" id="num_comprobante" autocomplete="off" required maxlength="10" placeholder="Número">
                             </div>
                             <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">

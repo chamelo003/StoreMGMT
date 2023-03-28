@@ -12,7 +12,7 @@ Class Permiso
 
     //Implementar para listar todos los registros
     public function listar(){
-        $sql = "SELECT * FROM Permiso";
+        $sql = "SELECT * FROM permiso";
         return ejecutarConsulta($sql);
     }
 }

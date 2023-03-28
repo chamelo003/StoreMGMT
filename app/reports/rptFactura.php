@@ -14,11 +14,11 @@ if (!isset($_SESSION["nombre"])){
         //Establecemos los datos de la empresa
         $logo = "logo.jpg";
         $ext_logo = "jpg";
-        $empresa = "SIGEVEN";
-        $documento = "10784241451";
-        $direccion = "Perú - Lima - Callao";
-        $telefono = "945943857";
-        $email = "hugo.roca@sigeven.com";
+        $empresa = "NOMBRE DE LA EMPRESA";
+        $documento = "";
+        $direccion = "Choluteca --- Honduras";
+        $telefono = "+504 32675750";
+        $email = "chamelo03@gmail.com";
 
         //Obtenemos los datos de la cabecera de la venta actual
         require_once "../models/Venta.php";

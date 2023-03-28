@@ -30,7 +30,7 @@ switch ($_GET["op"]) {
             }
         }
 
-        //Hash SHA256 en la contraseña
+        //Encriptar con Hash SHA256 la contraseña
         $claveHash = hash("SHA256", $clave);
 
         if (empty($idusuario)) {
@@ -113,9 +113,10 @@ switch ($_GET["op"]) {
             $logina = $_POST['logina'];
             $clavea = $_POST['clavea'];
 
-            $claveHash = $clavea; // hash("SHA256", $clavea);
+            $claveHash = hash("SHA256", $clavea); // hash("SHA256", $clavea);
 
             $rspta = $usuario->verificar($logina, $claveHash);
+            //$rspta = $usuario->verificar($logina, $clavea); este lo use porque no podia loguearme con la clave encryptada :v
 
             $fetch = $rspta->fetch_object();
 
