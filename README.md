@@ -1,3 +1,4 @@
+# Este es un fork del sistema original sigeven desarrollado por Hugo Roca adaptado con cambios minimos para poder usarlo --> https://github.com/HugoRoca/app-sigeven-v.2.0
 # SISTEMA DE GESTIÓN DE VENTAS
 Sistema para el contol de ventas e ingreso de stock, impresion de facturas, boletas y tickets, control de usuarios y permisos. **Desarrollado en PHP7, JQuery y la plantilla AdminLTE.**
 
