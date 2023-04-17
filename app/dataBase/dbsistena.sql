@@ -1,34 +1,32 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 10-06-2018 a las 22:37:57
--- Versión del servidor: 10.1.31-MariaDB
--- Versión de PHP: 7.2.4
-
-
+-- Host: localhost
+-- Generation Time: Apr 17, 2023 at 10:11 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-CREATE DATABASE IF NOT EXISTS `dbsistena`;
-USE `dbsistena`;
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `dbsistena`
+-- Database: `dbsistena`
 --
+CREATE DATABASE IF NOT EXISTS `dbsistena` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `dbsistena`;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `articulo`
+-- Table structure for table `articulo`
 --
 
 CREATE TABLE `articulo` (
@@ -39,26 +37,26 @@ CREATE TABLE `articulo` (
   `stock` int(11) NOT NULL,
   `descripcion` varchar(256) DEFAULT NULL,
   `imagen` varchar(45) DEFAULT NULL,
-  `condicion` tinyint(4) NOT NULL DEFAULT '1'
+  `condicion` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categoria`
+-- Table structure for table `categoria`
 --
 
 CREATE TABLE `categoria` (
   `idcategoria` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `descripcion` varchar(256) DEFAULT NULL,
-  `condicion` tinyint(4) NOT NULL DEFAULT '1'
+  `condicion` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ingreso`
+-- Table structure for table `ingreso`
 --
 
 CREATE TABLE `ingreso` (
@@ -77,7 +75,7 @@ CREATE TABLE `ingreso` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ingresodetalle`
+-- Table structure for table `ingresodetalle`
 --
 
 CREATE TABLE `ingresodetalle` (
@@ -90,7 +88,7 @@ CREATE TABLE `ingresodetalle` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Disparadores `ingresodetalle`
+-- Triggers `ingresodetalle`
 --
 DELIMITER $$
 CREATE TRIGGER `tr_updStockIngreso` AFTER INSERT ON `ingresodetalle` FOR EACH ROW BEGIN
@@ -103,7 +101,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `permiso`
+-- Table structure for table `permiso`
 --
 
 CREATE TABLE `permiso` (
@@ -112,7 +110,12 @@ CREATE TABLE `permiso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `permiso`
+-- Truncate table before insert `permiso`
+--
+
+TRUNCATE TABLE `permiso`;
+--
+-- Dumping data for table `permiso`
 --
 
 INSERT INTO `permiso` (`idpermiso`, `nombre`) VALUES
@@ -127,7 +130,7 @@ INSERT INTO `permiso` (`idpermiso`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `permisousuario`
+-- Table structure for table `permisousuario`
 --
 
 CREATE TABLE `permisousuario` (
@@ -137,22 +140,34 @@ CREATE TABLE `permisousuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `permisousuario`
+-- Truncate table before insert `permisousuario`
+--
+
+TRUNCATE TABLE `permisousuario`;
+--
+-- Dumping data for table `permisousuario`
 --
 
 INSERT INTO `permisousuario` (`idpermisousuario`, `idusuario`, `idpermiso`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 1, 3),
-(4, 1, 4),
-(5, 1, 5),
-(6, 1, 6),
-(7, 1, 7);
+(15, 1, 1),
+(16, 1, 2),
+(17, 1, 3),
+(18, 1, 4),
+(19, 1, 5),
+(20, 1, 6),
+(21, 1, 7),
+(22, 3, 1),
+(23, 3, 2),
+(24, 3, 3),
+(25, 3, 4),
+(26, 3, 5),
+(27, 3, 6),
+(28, 3, 7);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `persona`
+-- Table structure for table `persona`
 --
 
 CREATE TABLE `persona` (
@@ -169,7 +184,7 @@ CREATE TABLE `persona` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario`
+-- Table structure for table `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -183,21 +198,27 @@ CREATE TABLE `usuario` (
   `cargo` varchar(20) DEFAULT NULL,
   `login` varchar(20) NOT NULL,
   `clave` varchar(64) NOT NULL,
-  `condicion` tinyint(4) DEFAULT '1',
+  `condicion` tinyint(4) DEFAULT 1,
   `imagen` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `usuario`
+-- Truncate table before insert `usuario`
+--
+
+TRUNCATE TABLE `usuario`;
+--
+-- Dumping data for table `usuario`
 --
 
 INSERT INTO `usuario` (`idusuario`, `nombre`, `tipo_documento`, `num_documento`, `direccion`, `telefono`, `email`, `cargo`, `login`, `clave`, `condicion`, `imagen`) VALUES
-(1, 'Administrador', 'DNI', '75424245', 'Mz D lt 7 San juan macias', '7814340', '', 'Analista programador', 'admin', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, '1527651109.png');
+(1, 'Administrador', 'DNI', '75424245', 'Mz D lt 7 San juan macias', '7814340', '', 'Analista programador', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1, '1527651109.png'),
+(3, 'root02', 'DNI', 'asskdfkk', 'ksdksk', '555', 'askdfmks@llsd.com', 'sldfl', 'root', 'fd5f02c87843f48ee455e9c059de4bf77040856e9cc73ef3d82cc41ff484ba1c', 1, '');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `venta`
+-- Table structure for table `venta`
 --
 
 CREATE TABLE `venta` (
@@ -216,7 +237,7 @@ CREATE TABLE `venta` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ventadetalle`
+-- Table structure for table `ventadetalle`
 --
 
 CREATE TABLE `ventadetalle` (
@@ -229,7 +250,7 @@ CREATE TABLE `ventadetalle` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Disparadores `ventadetalle`
+-- Triggers `ventadetalle`
 --
 DELIMITER $$
 CREATE TRIGGER `tr_updStockVenta` AFTER INSERT ON `ventadetalle` FOR EACH ROW BEGIN
@@ -240,11 +261,11 @@ $$
 DELIMITER ;
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `articulo`
+-- Indexes for table `articulo`
 --
 ALTER TABLE `articulo`
   ADD PRIMARY KEY (`idarticulo`),
@@ -252,14 +273,14 @@ ALTER TABLE `articulo`
   ADD KEY `fk_articulo_categorio_idx` (`idcategoria`);
 
 --
--- Indices de la tabla `categoria`
+-- Indexes for table `categoria`
 --
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`idcategoria`),
   ADD UNIQUE KEY `nombre_UNIQUE` (`nombre`);
 
 --
--- Indices de la tabla `ingreso`
+-- Indexes for table `ingreso`
 --
 ALTER TABLE `ingreso`
   ADD PRIMARY KEY (`idingreso`),
@@ -267,7 +288,7 @@ ALTER TABLE `ingreso`
   ADD KEY `fk_ingreso_usuario_idx` (`idusuario`);
 
 --
--- Indices de la tabla `ingresodetalle`
+-- Indexes for table `ingresodetalle`
 --
 ALTER TABLE `ingresodetalle`
   ADD PRIMARY KEY (`idingresodetalle`),
@@ -275,13 +296,13 @@ ALTER TABLE `ingresodetalle`
   ADD KEY `fk_ingresodetalle_articulo_idx` (`idarticulo`);
 
 --
--- Indices de la tabla `permiso`
+-- Indexes for table `permiso`
 --
 ALTER TABLE `permiso`
   ADD PRIMARY KEY (`idpermiso`);
 
 --
--- Indices de la tabla `permisousuario`
+-- Indexes for table `permisousuario`
 --
 ALTER TABLE `permisousuario`
   ADD PRIMARY KEY (`idpermisousuario`),
@@ -289,19 +310,21 @@ ALTER TABLE `permisousuario`
   ADD KEY `fk_permisousuario_permiso_idx` (`idpermiso`);
 
 --
--- Indices de la tabla `persona`
+-- Indexes for table `persona`
 --
 ALTER TABLE `persona`
-  ADD PRIMARY KEY (`idpersona`);
+  ADD PRIMARY KEY (`idpersona`),
+  ADD UNIQUE KEY `num_documento` (`num_documento`);
 
 --
--- Indices de la tabla `usuario`
+-- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`idusuario`);
+  ADD PRIMARY KEY (`idusuario`),
+  ADD UNIQUE KEY `login` (`login`);
 
 --
--- Indices de la tabla `venta`
+-- Indexes for table `venta`
 --
 ALTER TABLE `venta`
   ADD PRIMARY KEY (`idventa`),
@@ -309,7 +332,7 @@ ALTER TABLE `venta`
   ADD KEY `fk_venta_usuario_idx` (`idusuario`);
 
 --
--- Indices de la tabla `ventadetalle`
+-- Indexes for table `ventadetalle`
 --
 ALTER TABLE `ventadetalle`
   ADD PRIMARY KEY (`idventadetalle`),
@@ -317,109 +340,109 @@ ALTER TABLE `ventadetalle`
   ADD KEY `fk_ventadetalle_idx` (`idarticulo`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `articulo`
+-- AUTO_INCREMENT for table `articulo`
 --
 ALTER TABLE `articulo`
-  MODIFY `idarticulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idarticulo` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `categoria`
+-- AUTO_INCREMENT for table `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `ingreso`
+-- AUTO_INCREMENT for table `ingreso`
 --
 ALTER TABLE `ingreso`
-  MODIFY `idingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idingreso` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `ingresodetalle`
+-- AUTO_INCREMENT for table `ingresodetalle`
 --
 ALTER TABLE `ingresodetalle`
-  MODIFY `idingresodetalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idingresodetalle` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `permiso`
+-- AUTO_INCREMENT for table `permiso`
 --
 ALTER TABLE `permiso`
   MODIFY `idpermiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `permisousuario`
+-- AUTO_INCREMENT for table `permisousuario`
 --
 ALTER TABLE `permisousuario`
-  MODIFY `idpermisousuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idpermisousuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT de la tabla `persona`
+-- AUTO_INCREMENT for table `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `usuario`
+-- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `venta`
+-- AUTO_INCREMENT for table `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `ventadetalle`
+-- AUTO_INCREMENT for table `ventadetalle`
 --
 ALTER TABLE `ventadetalle`
-  MODIFY `idventadetalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idventadetalle` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `articulo`
+-- Constraints for table `articulo`
 --
 ALTER TABLE `articulo`
   ADD CONSTRAINT `fk_articulo_categoria` FOREIGN KEY (`idcategoria`) REFERENCES `categoria` (`idcategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `ingreso`
+-- Constraints for table `ingreso`
 --
 ALTER TABLE `ingreso`
   ADD CONSTRAINT `fk_ingreso_persona` FOREIGN KEY (`idproveedor`) REFERENCES `persona` (`idpersona`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_ingreso_usuario` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `ingresodetalle`
+-- Constraints for table `ingresodetalle`
 --
 ALTER TABLE `ingresodetalle`
   ADD CONSTRAINT `fk_ingresodetalle_articulo` FOREIGN KEY (`idarticulo`) REFERENCES `articulo` (`idarticulo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_ingresodetalle_ingreso` FOREIGN KEY (`idingreso`) REFERENCES `ingreso` (`idingreso`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `permisousuario`
+-- Constraints for table `permisousuario`
 --
 ALTER TABLE `permisousuario`
   ADD CONSTRAINT `fk_permisousuario_permiso` FOREIGN KEY (`idpermiso`) REFERENCES `permiso` (`idpermiso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_permisousuario_usuario` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `venta`
+-- Constraints for table `venta`
 --
 ALTER TABLE `venta`
   ADD CONSTRAINT `fk_venta_cliente` FOREIGN KEY (`idcliente`) REFERENCES `persona` (`idpersona`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_venta_usuario` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `ventadetalle`
+-- Constraints for table `ventadetalle`
 --
 ALTER TABLE `ventadetalle`
   ADD CONSTRAINT `fk_ventadetalle_articulo` FOREIGN KEY (`idarticulo`) REFERENCES `articulo` (`idarticulo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
